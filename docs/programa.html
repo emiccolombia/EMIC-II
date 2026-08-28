@@ -1,830 +1,1065 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Programa — EMIC II · 2º Encuentro de Microbiología</title>
+
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-F558G27GN5"></script>
 <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-F558G27GN5');
-  </script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-F558G27GN5');
+</script>
+
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600&amp;family=Titillium+Web:wght@600;700&amp;family=Lora:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <link href="styles.css" rel="stylesheet"/>
+
 <style>
-    /* ─── Eje badges ─── */
-    .eje-badge {
-      display: inline-block;
-      padding: 0.25rem 0.85rem;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.6rem;
-    }
+  .eje-badge {
+    display: inline-block;
+    padding: 0.25rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
+  }
 
-    /* ─── Day header cards ─── */
-    .day-header {
-      border-radius: 1rem;
-      padding: 1.4rem 1.8rem;
-      margin: 2.5rem 0 0.6rem;
-      color: #fff;
-    }
-    .day-header.day-1 { background: linear-gradient(135deg, #B71C1C, #B71C1C); }
-    .day-header.day-2 { background: linear-gradient(135deg, #1E88E5, #1E88E5); }
-    .day-header.day-3 { background: linear-gradient(135deg, #43A047, #43A047); }
+  .day-header {
+    border-radius: 1rem;
+    padding: 1.4rem 1.8rem;
+    margin: 2.5rem 0 0.6rem;
+    border: 1px solid transparent;
+    box-shadow: 0 8px 20px rgba(33, 33, 33, 0.08);
+  }
 
-    .day-header h3 {
-      color: #fff;
-      font-size: clamp(1.15rem, 2.5vw, 1.4rem);
-      margin-bottom: 0.25rem;
-    }
-    .day-header .day-location {
-      font-size: 0.92rem;
-      opacity: 0.88;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
+  .day-header.day-3 {
+    background: linear-gradient(135deg, #d2efd7, #a8dcb2);
+    border-color: #79bf88;
+    color: #1c5129;
+  }
 
-    /* ─── Colores del cronograma ─── */
-    tr.row-registro td,
-    tr.row-apertura td,
-    tr.row-break td,
-    tr.row-almuerzo td,
-    tr.row-clausura td {
-      background: #c9f7ae;
-      color: #212121;
-      font-weight: 600;
-    }
+  .day-header.day-3 h3 {
+    color: inherit;
+    font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+    margin-bottom: 0.25rem;
+  }
 
-    tr.row-magistral td {
-      background: #fff95a;
-      color: #212121;
-      font-weight: 600;
-      font-style: normal;
-      font-size: inherit;
-    }
+  .day-header .day-location {
+    font-size: 0.92rem;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
 
-    tr.row-ponencia td {
-      background: #b9eef2;
-      color: #212121;
-      font-weight: 500;
-    }
+  .day-header.day-3 .eje-badge {
+    background: #f1faf3;
+    color: #236033;
+    border: 1px solid #79bf88;
+  }
 
-    tr.row-foro td {
-      background: #ffc65b;
-      color: #212121;
-      font-weight: 600;
-    }
+  .program-heading {
+    text-align: center;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
 
-    tr.row-posters td {
-      background: #b7c1f1;
-      color: #212121;
-      font-weight: 600;
-    }
+  .program-subtitle {
+    text-align: center;
+    color: #616161;
+    margin-bottom: 2rem;
+  }
 
+  .day-table table {
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border-radius: 0.8rem;
+    box-shadow: 0 5px 16px rgba(33, 33, 33, 0.07);
+  }
+
+  .day-table td,
+  .day-table th {
+    border-color: rgba(33, 33, 33, 0.12);
+  }
+
+  .day-table.day-3 thead th {
+    background: #3b8c50;
+    color: #fff;
+  }
+
+  .day-table.day-3 tr.row-registro td,
+  .day-table.day-3 tr.row-break td,
+  .day-table.day-3 tr.row-almuerzo td,
+  .day-table.day-3 tr.row-clausura td {
+    background: #f0faf2;
+  }
+
+  .day-table.day-3 tr.row-magistral td {
+    background: #c4e8cb;
+  }
+
+  .day-table.day-3 tr.row-ponencia td {
+    background: #ddf2e1;
+  }
+
+  .day-table.day-3 tr.row-foro td {
+    background: #b0dfba;
+  }
+
+  .day-table.day-3 tr.row-posters td {
+    background: #d0e8d5;
+  }
+
+  .day-table tbody tr:hover td {
+    filter: brightness(0.98);
+  }
+
+  tr.row-registro td,
+  tr.row-break td,
+  tr.row-almuerzo td,
+  tr.row-clausura td {
+    color: #212121;
+    font-weight: 600;
+  }
+
+  tr.row-magistral td {
+    color: #212121;
+    font-weight: 600;
+    font-style: normal;
+    font-size: inherit;
+  }
+
+  tr.row-ponencia td {
+    color: #212121;
+    font-weight: 500;
+  }
+
+  tr.row-foro td,
+  tr.row-posters td {
+    color: #212121;
+    font-weight: 600;
+  }
+
+  td.hora {
+    font-weight: 700;
+    white-space: nowrap;
+    width: 135px;
+    min-width: 145px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .table-wrap table em {
+    font-style: italic;
+  }
+
+  @media (max-width: 640px) {
     td.hora {
-      font-weight: 700;
-      white-space: nowrap;
-      width: 135px;
+      min-width: 125px;
+      white-space: normal;
+      line-height: 1.25;
     }
-
-    .program-heading {
-      text-align: center;
-      margin-bottom: 0.75rem;
-      text-transform: uppercase;
-    }
-
-    .program-subtitle {
-      text-align: center;
-      color: #616161;
-      margin-bottom: 2rem;
-    }
-
-    .table-wrap table em {
-      font-style: italic;
-    }
-
-
-    /* ─── Eje legend ─── */
-    .eje-legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-    }
-  
-
-    /* ─── Paleta pastel por eje temático ─── */
-    .day-header {
-      border: 1px solid transparent;
-      box-shadow: 0 8px 20px rgba(33, 33, 33, 0.08);
-    }
-
-    .day-header.day-1 {
-      background: linear-gradient(135deg, #f7c8c8, #efa6a6);
-      border-color: #df8585;
-      color: #641d1d;
-    }
-
-    .day-header.day-2 {
-      background: linear-gradient(135deg, #c9e3f8, #9dcaf0);
-      border-color: #72afe2;
-      color: #123f66;
-    }
-
-    .day-header.day-3 {
-      background: linear-gradient(135deg, #d2efd7, #a8dcb2);
-      border-color: #79bf88;
-      color: #1c5129;
-    }
-
-    .day-header.day-1 h3,
-    .day-header.day-2 h3,
-    .day-header.day-3 h3 {
-      color: inherit;
-    }
-
-    .day-header .day-location {
-      opacity: 1;
-    }
-
-    .day-header.day-1 .eje-badge {
-      background: #fff2f2;
-      color: #7a2020;
-      border: 1px solid #df8585;
-    }
-
-    .day-header.day-2 .eje-badge {
-      background: #f2f8fe;
-      color: #174f7d;
-      border: 1px solid #72afe2;
-    }
-
-    .day-header.day-3 .eje-badge {
-      background: #f1faf3;
-      color: #236033;
-      border: 1px solid #79bf88;
-    }
-
-    .day-table table {
-      border-collapse: separate;
-      border-spacing: 0;
-      overflow: hidden;
-      border-radius: 0.8rem;
-      box-shadow: 0 5px 16px rgba(33, 33, 33, 0.07);
-    }
-
-    .day-table td,
-    .day-table th {
-      border-color: rgba(33, 33, 33, 0.12);
-    }
-
-    .day-table.day-1 thead th { background: #b94b4b; color: #fff; }
-    .day-table.day-1 tr.row-registro td,
-    .day-table.day-1 tr.row-apertura td,
-    .day-table.day-1 tr.row-break td,
-    .day-table.day-1 tr.row-almuerzo td,
-    .day-table.day-1 tr.row-clausura td { background: #fff1f1; }
-    .day-table.day-1 tr.row-magistral td { background: #f5c2c2; }
-    .day-table.day-1 tr.row-ponencia td { background: #f9dddd; }
-    .day-table.day-1 tr.row-foro td { background: #efaaaa; }
-    .day-table.day-1 tr.row-posters td { background: #efd2df; }
-
-    .day-table.day-2 thead th { background: #2979b9; color: #fff; }
-    .day-table.day-2 tr.row-registro td,
-    .day-table.day-2 tr.row-apertura td,
-    .day-table.day-2 tr.row-break td,
-    .day-table.day-2 tr.row-almuerzo td,
-    .day-table.day-2 tr.row-clausura td { background: #eff7fe; }
-    .day-table.day-2 tr.row-magistral td { background: #bfdcf4; }
-    .day-table.day-2 tr.row-ponencia td { background: #dcecf9; }
-    .day-table.day-2 tr.row-foro td { background: #a8cff0; }
-    .day-table.day-2 tr.row-posters td { background: #cbdcf5; }
-
-    .day-table.day-3 thead th { background: #3b8c50; color: #fff; }
-    .day-table.day-3 tr.row-registro td,
-    .day-table.day-3 tr.row-apertura td,
-    .day-table.day-3 tr.row-break td,
-    .day-table.day-3 tr.row-almuerzo td,
-    .day-table.day-3 tr.row-clausura td { background: #f0faf2; }
-    .day-table.day-3 tr.row-magistral td { background: #c4e8cb; }
-    .day-table.day-3 tr.row-ponencia td { background: #ddf2e1; }
-    .day-table.day-3 tr.row-foro td { background: #b0dfba; }
-    .day-table.day-3 tr.row-posters td { background: #d0e8d5; }
-
-    .day-table tbody tr:hover td {
-      filter: brightness(0.98);
-    }
-
-    td.hora {
-      min-width: 145px;
-      text-align: center;
-      font-variant-numeric: tabular-nums;
-    }
-
-    @media (max-width: 640px) {
-      td.hora {
-        min-width: 125px;
-        white-space: normal;
-        line-height: 1.25;
-      }
-    }
+  }
 </style>
 </head>
+
 <body>
+
 <header>
 <div class="header-logos-container header-logos-emic">
 
-      <div class="logo-emic-box">
-        <a href="https://www.instagram.com/emic.col" target="_blank" rel="noopener noreferrer"><img src="images/Emic_Black.png" alt="Logo EMIC II" class="header-logo" style="width: 300px; height: auto;"></a>
-      </div>
+  <div class="logo-emic-box">
+    <a href="https://www.instagram.com/emic.col" target="_blank" rel="noopener noreferrer">
+      <img src="images/Emic_Black.png" alt="Logo EMIC II" class="header-logo" style="width: 300px; height: auto;">
+    </a>
+  </div>
 
-      <div class="logos-bloques">
-        <div class="logos-fila">
-          <span class="logos-label">Organizan</span>
-          <div class="logos-grupo">
-         <a href="https://fnaturales.udistrital.edu.co" target="_blank" rel="noopener noreferrer"><img src="images/UD.png" alt="Universidad Distrital Francisco José de Caldas" class="header-logo logo-organizador" style="width: 230px ;height: auto;"></a>
-         <a href="https://www.instagram.com/micrap_ud/" target="_blank" rel="noopener noreferrer"><img src="images/micrap_violet.png" alt="Logo MICRAP" class="header-logo logo-organizador" style="width: 105px ;height: auto;"></a> 
-        </div>
-        </div>
-      <div class="logos-fila">
-          <span class="logos-label">Apoyan</span>
-          <div class="logos-grupo">
-          <a href="https://asm.org" target="_blank" rel="noopener noreferrer"><img src="images/ASM.png" alt="American Society for Microbiology" class="header-logo logo-organizador" style="width: 95px ;height: auto;"></a>
-          <a href="https://www.polco.com.co/" target="_blank" rel="noopener noreferrer"><img src="images/polco.png" alt="polco" class="header-logo logo-apoyo" style="width: 110px ;height: auto;"></a>
-          <a href="https://www.polco.com.co/marcas" target="_blank" rel="noopener noreferrer"><img src="images/Buchi.png" alt="Logotipo_buchi" class="header-logo logo-apoyo" style="width: 70px ;height: auto;"></a>
-          <a href="https://www.polco.com.co/marcas" target="_blank" rel="noopener noreferrer"><img src="images/bruker.svg" alt="Logotipo_bruker" class="header-logo logo-apoyo" style="width: 60px ;height: auto;"></a>
-          <a href="https://islasas.com/" target="_blank" rel="noopener noreferrer"><img src="images/LOGO ISLA.png" alt="Logotipo_Isla" class="header-logo logo-apoyo" style="width: 55px ;height: auto;"></a>
-          <a href="https://islasas.com/catalogo-isla/" target="_blank" rel="noopener noreferrer"><img src="images/oxfordnanopore.svg" alt="Logotipo_Oxford" class="header-logo logo-apoyo" style="width: 120px ;height: auto;"></a>
-          <a href="https://www.rochembiocare.com/" target="_blank" rel="noopener noreferrer"><img src="images/Rochem.png" alt="Logotipo_RochemBiocare" class="header-logo logo-apoyo" style="width: 160px ;height: auto;"></a>
-          <a href="https://www.rochembiocare.com/" target="_blank" rel="noopener noreferrer"><img src="images/illumina.svg" alt="Logotipo_illumina" class="header-logo logo-apoyo" style="width: 90px ;height: auto;"></a>
-          <a href="https://www.javerianacali.edu.co/" target="_blank" rel="noopener noreferrer"><img src="images/javeriana" alt="Logotipo_Javeriana" class="header-logo logo-apoyo" style="width: 120px ;height: auto;"></a>
-          <a href="https://open.spotify.com/show/5naWOFTRKINfM2EwAotxta?si=c60ed6004af44d29" target="_blank" rel="noopener noreferrer"><img src="images/Logotipo_EntreTubosPodcast.png" alt="Logotipo_EntreTubosPodcast" class="header-logo logo-apoyo" style="width: 60px ;height: auto;"></a>
-          <a href="https://www.sophicol.org/" target="_blank" rel="noopener noreferrer"><img src="images/sophic.png" alt="Logotipo_sophic" class="header-logo logo-apoyo" style="width: 85px ;height: auto;"></a>
+  <div class="logos-bloques">
 
-        </div>
-        </div> 
+    <div class="logos-fila">
+      <span class="logos-label">Organizan</span>
+
+      <div class="logos-grupo">
+
+        <a href="https://fnaturales.udistrital.edu.co" target="_blank" rel="noopener noreferrer">
+          <img src="images/UD.png" alt="Universidad Distrital Francisco José de Caldas" class="header-logo logo-organizador" style="width: 230px; height: auto;">
+        </a>
+
+        <a href="https://www.instagram.com/micrap_ud/" target="_blank" rel="noopener noreferrer">
+          <img src="images/micrap_violet.png" alt="Logo MICRAP" class="header-logo logo-organizador" style="width: 105px; height: auto;">
+        </a>
+
       </div>
     </div>
 
-<nav>
-<div class="nav-brand">
-<a href="index.html"><h3 data-i18n="nav.brand">2° Encuentro de Microbiología</h3></a>
+    <div class="logos-fila">
+
+      <span class="logos-label">Apoyan</span>
+
+      <div class="logos-grupo">
+
+        <a href="https://asm.org" target="_blank" rel="noopener noreferrer">
+          <img src="images/ASM.png" alt="American Society for Microbiology" class="header-logo logo-organizador" style="width: 95px; height: auto;">
+        </a>
+
+        <a href="https://www.polco.com.co/" target="_blank" rel="noopener noreferrer">
+          <img src="images/polco.png" alt="polco" class="header-logo logo-apoyo" style="width: 110px; height: auto;">
+        </a>
+
+        <a href="https://www.polco.com.co/marcas" target="_blank" rel="noopener noreferrer">
+          <img src="images/Buchi.png" alt="Logotipo_buchi" class="header-logo logo-apoyo" style="width: 70px; height: auto;">
+        </a>
+
+        <a href="https://www.polco.com.co/marcas" target="_blank" rel="noopener noreferrer">
+          <img src="images/bruker.svg" alt="Logotipo_bruker" class="header-logo logo-apoyo" style="width: 60px; height: auto;">
+        </a>
+
+        <a href="https://islasas.com/" target="_blank" rel="noopener noreferrer">
+          <img src="images/LOGO ISLA.png" alt="Logotipo_Isla" class="header-logo logo-apoyo" style="width: 55px; height: auto;">
+        </a>
+
+        <a href="https://islasas.com/catalogo-isla/" target="_blank" rel="noopener noreferrer">
+          <img src="images/oxfordnanopore.svg" alt="Logotipo_Oxford" class="header-logo logo-apoyo" style="width: 120px; height: auto;">
+        </a>
+
+        <a href="https://www.rochembiocare.com/" target="_blank" rel="noopener noreferrer">
+          <img src="images/Rochem.png" alt="Logotipo_RochemBiocare" class="header-logo logo-apoyo" style="width: 160px; height: auto;">
+        </a>
+
+        <a href="https://www.rochembiocare.com/" target="_blank" rel="noopener noreferrer">
+          <img src="images/illumina.svg" alt="Logotipo_illumina" class="header-logo logo-apoyo" style="width: 90px; height: auto;">
+        </a>
+
+        <a href="https://www.javerianacali.edu.co/" target="_blank" rel="noopener noreferrer">
+          <img src="images/javeriana" alt="Logotipo_Javeriana" class="header-logo logo-apoyo" style="width: 120px; height: auto;">
+        </a>
+
+        <a href="https://open.spotify.com/show/5naWOFTRKINfM2EwAotxta?si=c60ed6004af44d29" target="_blank" rel="noopener noreferrer">
+          <img src="images/Logotipo_EntreTubosPodcast.png" alt="Logotipo_EntreTubosPodcast" class="header-logo logo-apoyo" style="width: 60px; height: auto;">
+        </a>
+
+        <a href="https://www.sophicol.org/" target="_blank" rel="noopener noreferrer">
+          <img src="images/sophic.png" alt="Logotipo_sophic" class="header-logo logo-apoyo" style="width: 85px; height: auto;">
+        </a>
+
+      </div>
+    </div>
+
+  </div>
 </div>
+
+<nav>
+
+<div class="nav-brand">
+  <a href="index.html">
+    <h3 data-i18n="nav.brand">2° Encuentro de Microbiología</h3>
+  </a>
+</div>
+
 <div class="nav-menu" id="nav-menu">
 <ul>
-<li><a data-i18n="nav.about" href="acerca.html">Acerca</a></li>
-<!--  <li><a href="multimedia.html" data-i18n="nav.media">Medios Visuales</a></li> -->
-<li><a data-i18n="nav.sponsor" href="patrocinadores.html">Patrocinadores</a></li>
-<li><a href="cursos.html" data-i18n="nav.guests">Cursos precongreso</a></li>
-<li><a data-i18n="nav.committee" href="comite.html">Organizadores</a></li>
-<li><a data-i18n="nav.program" href="programa.html">Programa</a></li>
-<li><a data-i18n="nav.register" href="registro.html">Registro</a></li>
-<li><a data-i18n="nav.location" href="lugar.html">Lugar</a></li>
-<li><a data-i18n="nav.contact" href="contacto.html">Contacto</a></li>
-<li><a data-i18n="nav.agradecimientos" href="agradecimientos.html">Agradecimientos</a></li>
+  <li><a data-i18n="nav.about" href="acerca.html">Acerca</a></li>
+  <li><a data-i18n="nav.sponsor" href="patrocinadores.html">Patrocinadores</a></li>
+  <li><a href="cursos.html" data-i18n="nav.guests">Cursos precongreso</a></li>
+  <li><a data-i18n="nav.committee" href="comite.html">Organizadores</a></li>
+  <li><a data-i18n="nav.program" href="programa.html">Programa</a></li>
+  <li><a data-i18n="nav.register" href="registro.html">Registro</a></li>
+  <li><a data-i18n="nav.location" href="lugar.html">Lugar</a></li>
+  <li><a data-i18n="nav.contact" href="contacto.html">Contacto</a></li>
+  <li><a data-i18n="nav.agradecimientos" href="agradecimientos.html">Agradecimientos</a></li>
 </ul>
 </div>
+
 <div class="nav-toggle" id="nav-toggle">
-<span class="bar"></span><span class="bar"></span><span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
 </div>
+
 </nav>
 </header>
+
+
 <main>
 <section>
-<h1 class="program-heading" data-i18n="program.title">Cronograma - Auditorio Fundadores</h1>
-<p class="program-subtitle" data-i18n="program.subtitle">EMIC 2026 · 26, 27 y 28 de agosto</p>
-<div class="day-header day-1">
-<span class="eje-badge eje-1" data-i18n="program.day1.badge">Eje temático 1</span>
-<h3 data-i18n="program.day1.title">Miércoles 26 de agosto</h3>
-<div class="day-location">
-<span>📍</span>
-<span data-i18n="program.location">Auditorio Fundadores</span>
-</div>
-</div>
-<p data-i18n="program.day1.axis" style="margin-bottom:0.75rem; font-style:italic; font-weight:600;">Microbiología médica, virología, parasitología, farmacología y tecnologías biomédicas</p>
-<div class="table-wrap day-table day-1">
-<table>
-<thead><tr><th data-i18n="program.time">Hora</th><th data-i18n="program.activity">Actividad</th></tr></thead>
-<tbody>
-<tr class="row-registro">
-<td class="hora">08:00 – 08:30</td>
-<td data-i18n="day1.row1">Registro de asistentes</td>
-</tr>
-<tr class="row-apertura">
-<td class="hora">08:30 – 09:00</td>
-<td data-i18n="day1.row2">Ceremonia de apertura — Ángela María Wilches Flórez — Magistral: La vida invisible y la condición humana: aportes de las biohumanidades a la sostenibilidad</td>
-</tr>
-<tr class="row-magistral">
-<td class="hora">09:00 – 09:15</td>
-<td data-i18n="day1.row3">Magistral 1: Carolina Muñoz — Universidad de Los Andes — Estrategias híbridas computacionales y experimentales para optimizar la búsqueda de compuestos antimicrobianos en la biodiversidad</td>
-</tr>
-<tr class="row-ponencia">
-<td class="hora">09:15 – 09:30</td>
-<td data-i18n="day1.row4">Ponencia 1: Sara Tatiana Niño Capador — No todos los coxsackievirus son iguales: heterogeneidad entre serotipos en la patogénesis de la diabetes tipo 1.</td>
-</tr>
-<tr class="row-ponencia">
-<td class="hora">09:30 – 09:45</td>
-<td data-i18n="day1.row5">Ponencia 2: Carolina Reyes Perdomo — Resistencia antimicrobiana en ambientes acuáticos con alto impacto antropogénico: vigilancia basada en análisis microbiológico y genómico bajo un enfoque One Health.</td>
-</tr>
-<tr class="row-magistral">
-<td class="hora">09:45 – 10:00</td>
-<td data-i18n="day1.row6">Magistral 2: Javier Bustamante — Universidad del Valle — Cuando la infección y la desnutrición convergen: hallazgos sobre <em>Helicobacter pylori</em> en niños menores de 5 años de Cali, Colombia</td>
-</tr>
-<tr class="row-break">
-<td class="hora">10:00 – 10:15</td>
-<td data-i18n="day1.row7">Coffee break</td>
-</tr>
-<tr class="row-magistral">
-<td class="hora">10:15 – 10:30</td>
-<td data-i18n="day1.row8">Magistral 3: María José Cadavid Lanao — Universidad El Bosque — El uso de los microorganismos en oncología</td>
-</tr>
-<tr class="row-ponencia">
-<td class="hora">10:30 – 10:45</td>
-<td data-i18n="day1.row9">Ponencia 3: Margie Lorena Rodríguez Romero — Susceptibilidad in vitro a aztreonam/avibactam y comparadores frente a Enterobacterales productores de β-lactamasas.</td>
-</tr>
-<tr class="row-ponencia">
-<td class="hora">10:45 – 11:00</td>
-<td data-i18n="day1.row10">Ponencia 4: Santiago Sánchez Martínez — Asimetría en la evidencia experimental sobre evasión inmune del VPH de alto riesgo.</td>
-</tr>
-<tr class="row-foro">
-<td class="hora">11:00 – 11:30</td>
-<td data-i18n="day1.row11">Foro: Microbiotas</td>
-</tr>
-<tr class="row-posters">
-<td class="hora">11:30 – 12:30</td>
-<td data-i18n="day1.row12">Sesión de pósteres</td>
-</tr>
-<tr class="row-almuerzo">
-<td class="hora">12:30 – 13:30</td>
-<td data-i18n="day1.row13">Almuerzo patrocinado por POLCO</td>
-</tr>
-<tr class="row-magistral">
-<td class="hora">13:30 – 13:45</td>
-<td data-i18n="day1.row14">Magistral 4: Sergio Córdoba Córdoba — Universidad Distrital Francisco José de Caldas — Ecología y evolución de enfermedades zoonóticas en aves</td>
-</tr>
-<tr class="row-ponencia">
-<td class="hora">13:45 – 14:00</td>
-<td data-i18n="day1.row15">Ponencia 5: Sebastián Contreras Pérez — Análisis del tratamiento combinado entre el inhibidor Pkc1 (NPC15437) y caspofungina frente a <em>Neocosmospora keratoplastica</em>.</td>
-</tr>
-<tr class="row-ponencia">
-<td class="hora">14:00 – 14:15</td>
-<td data-i18n="day1.row16">Ponencia 6: Leidy Alejandra Giraldo Martínez — Caracterización molecular del sitio de clivaje S1/S2 y del gen accesorio 3C del coronavirus felino en gatos naturalmente infectados de Colombia.</td>
-</tr>
-<tr class="row-break">
-<td class="hora">14:15 – 14:30</td>
-<td data-i18n="day1.row17">Coffee break</td>
-</tr>
-<tr class="row-magistral">
-<td class="hora">14:30 – 14:45</td>
-<td data-i18n="day1.row18">Magistral 8: José Alfonso Leyva — Universidad Javeriana — Virus del Zika y Membrana Celular</td>
-</tr>
-<tr class="row-ponencia">
-<td class="hora">14:45 – 15:00</td>
-<td data-i18n="day1.row19">Ponencia 7: Farley Adriana Garavito Jaimes &amp; Leidy Alejandra Giraldo Martínez — Detección molecular de microfilarias en caninos y felinos de Bogotá, Colombia.</td>
-</tr>
-<tr class="row-ponencia">
-<td class="hora">15:00 – 15:15</td>
-<td data-i18n="day1.row20">Ponencia 8: Andrés Rincón-Riveros — Network Fragmentation and Selective Microbial Depletion Define the Epithelial Ovarian Cancer Microbiome in Colombia.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="day-header day-2">
-<span class="eje-badge eje-2" data-i18n="program.day2.badge">Eje temático 2</span>
-<h3 data-i18n="program.day2.title">Jueves 27 de agosto</h3>
-<div class="day-location">
-<span>📍</span>
-<span data-i18n="program.location">Auditorio Fundadores</span>
-</div>
-</div>
-<p data-i18n="program.day2.axis" style="margin-bottom:0.75rem; font-style:italic; font-weight:600;">Ecología microbiana, microbiología agrícola y biotecnología ambiental</p>
-<div class="table-wrap day-table day-2">
-<table>
-<thead><tr><th data-i18n="program.time">Hora</th><th data-i18n="program.activity">Actividad</th></tr></thead>
-<tbody>
-<tr class="row-registro">
-<td class="hora">08:30 – 09:00</td>
-<td data-i18n="day2.row1">Registro de asistentes</td>
-</tr>
-<tr class="row-magistral">
-<td class="hora">09:00 – 09:15</td>
-<td data-i18n="day2.row2">Magistral 5: Sergio Alberto Díaz Gallo — Universidad Escuela Colombiana de Ingeniería — Sistemas de compostaje y análisis de diversidad microbiana</td>
-</tr>
-<tr class="row-ponencia">
-<td class="hora">09:15 – 09:30</td>
-<td data-i18n="day2.row3">Ponencia 9: Nataly Alejandra Rodríguez Lugo — Comunidades bacterianas y fúngicas asociadas a las raíces de la bromelia de páramo amenazada <em>Puya goudotiana</em>.</td>
-</tr>
-<tr class="row-ponencia">
-<td class="hora">09:30 – 09:45</td>
-<td data-i18n="day2.row4">Ponencia 10: Natalia Prada Matallana — Evaluación del impacto antropogénico sobre los microorganismos mediadores del ciclo del fósforo en suelos del Páramo de Sumapaz.</td>
-</tr>
-<tr class="row-magistral">
-<td class="hora">09:45 – 10:00</td>
-<td data-i18n="day2.row5">Magistral 6: David Tovar — Universidad Distrital Francisco José de Caldas — Microorganismos endolíticos en rocas máficas y ultramáficas de la Isla Gorgona: una perspectiva astrobiológica</td>
-</tr>
-<tr class="row-break">
-<td class="hora">10:00 – 10:15</td>
-<td data-i18n="day2.row6">Coffee break</td>
-</tr>
-<tr class="row-magistral">
-<td class="hora">10:15 – 10:30</td>
-<td data-i18n="day2.row7">Magistral 7: María Angélica Leal Leal — Universidad Distrital Francisco José de Caldas — Ambientes extremos y su ecología, la clave para la astrobiología</td>
-</tr>
-<tr class="row-ponencia">
-<td class="hora">10:30 – 10:45</td>
-<td data-i18n="day2.row8">Ponencia 11: Paula Andrea Zea Garzón — Evaluación del potencial de bacterias rizosféricas asociadas a <em>Eruca vesicaria</em> como alternativa biológica para el control de <em>Botrytis</em> spp.</td>
-</tr>
-<tr class="row-ponencia">
-<td class="hora">10:45 – 11:00</td>
-<td data-i18n="day2.row9">Ponencia 12: Ana María Martínez Torres — Caracterización de ramnolípidos producidos por cepas de <em>Pseudomonas</em> spp. y evaluación de su actividad antimicrobiana frente a patógenos de importancia pecuaria.</td>
-</tr>
-<tr class="row-foro">
-<td class="hora">11:00 – 11:30</td>
-<td data-i18n="day2.row10">Foro: Biotecnologías</td>
-</tr>
-<tr class="row-posters">
-<td class="hora">11:30 – 12:30</td>
-<td data-i18n="day2.row11">Sesión de pósteres</td>
-</tr>
-<tr class="row-almuerzo">
-<td class="hora">12:30 – 13:30</td>
-<td data-i18n="day2.row12">Almuerzo patrocinado por ROCHEM BIOCARE</td>
-</tr>
-<tr class="row-ponencia">
-<td class="hora">13:30 – 13:45</td>
-<td data-i18n="day2.row13">Ponencia 13: Dania Alejandra Holguín Espejo — Impacto de diferentes variables de proceso en la producción de vino tinto a partir de la uva <em>Vitis labrusca</em>.</td>
-</tr>
-<tr class="row-ponencia">
-<td class="hora">13:45 – 14:00</td>
-<td data-i18n="day2.row14">Ponencia 14: Caracterización de bacterias rizosféricas y su efecto como promotoras de crecimiento vegetal en dos variedades de <em>Coffea arabica</em> L. bajo condiciones de déficit hídrico</td>
-</tr>
-<tr class="row-magistral">
-<td class="hora">14:00 – 14:15</td>
-<td data-i18n="day2.row15">Magistral 13: Cuauhtémoc Licona-Cassani — Universidad Nacional Autónoma de México — Metabologenómica para descubrir microbios que protegen cultivos contra <em>Colletotrichum</em></td>
-</tr>
-<tr class="row-break">
-<td class="hora">14:15 – 14:30</td>
-<td data-i18n="day2.row16">Coffee break</td>
-</tr>
-<tr class="row-magistral">
-<td class="hora">14:30 – 14:45</td>
-<td data-i18n="day2.row17">Magistral 14: José Utrilla Carreri — Universidad Nacional Autónoma de México — Genómica funcional para el mejoramiento de bacterias chasis en biología sintética</td>
-</tr>
-<tr class="row-ponencia">
-<td class="hora">14:45 – 15:00</td>
-<td data-i18n="day2.row18">Ponencia 15: Danna Camila Cely Holguín — Evaluación de diferentes medios de cultivo para el aislamiento de <em>Phytophthora infestans</em> bajo condiciones controladas.</td>
-</tr>
-<tr class="row-ponencia">
-<td class="hora">15:00 – 15:15</td>
-<td data-i18n="day2.row19">Ponencia 16: Luis Ángel Chicoma Rojas — Integrated bioassay-guided and genome-based bioprospecting reveals insecticidal and plant growth-promoting potential in <em>Burkholderia thailandensis</em> JBC02.</td>
-</tr>
-<tr class="row-foro">
-<td class="hora">15:15 – 16:00</td>
-<td data-i18n="day2.row20">Foro Cooperación</td>
-</tr>
-</tbody>
-</table>
-</div>
+
+<h1 class="program-heading" data-i18n="program.title">
+  Cronograma - Auditorio Fundadores
+</h1>
+
+<p class="program-subtitle" data-i18n="program.subtitle">
+  EMIC 2026 · 28 de agosto
+</p>
+
+
 <div class="day-header day-3">
-<span class="eje-badge eje-3" data-i18n="program.day3.badge">Eje temático 3</span>
-<h3 data-i18n="program.day3.title">Viernes 28 de agosto</h3>
-<div class="day-location">
-<span>📍</span>
-<span data-i18n="program.location">Auditorio Fundadores</span>
+
+  <span class="eje-badge eje-3" data-i18n="program.day3.badge">
+    Eje temático 3
+  </span>
+
+  <h3 data-i18n="program.day3.title">
+    Viernes 28 de agosto
+  </h3>
+
+  <div class="day-location">
+    <span>📍</span>
+    <span data-i18n="program.location">
+      Auditorio Fundadores
+    </span>
+  </div>
+
 </div>
-</div>
-<p data-i18n="program.day3.axis" style="margin-bottom:0.75rem; font-style:italic; font-weight:600;">Biología computacional, biología sintética, bioinformática y ciencias ómicas</p>
+
+
+<p
+data-i18n="program.day3.axis"
+style="margin-bottom:0.75rem; font-style:italic; font-weight:600;"
+>
+Biología computacional, biología sintética, bioinformática y ciencias ómicas
+</p>
+
+
 <div class="table-wrap day-table day-3">
+
 <table>
-<thead><tr><th data-i18n="program.time">Hora</th><th data-i18n="program.activity">Actividad</th></tr></thead>
+
+<thead>
+<tr>
+  <th data-i18n="program.time">Hora</th>
+  <th data-i18n="program.activity">Actividad</th>
+</tr>
+</thead>
+
 <tbody>
+
+
 <tr class="row-registro">
-<td class="hora">08:30 – 09:00</td>
-<td data-i18n="day3.row1">Registro de asistentes</td>
+
+<td class="hora">
+08:30 – 09:00
+</td>
+
+<td data-i18n="day3.row1">
+Registro de asistentes
+</td>
+
 </tr>
+
+
 <tr class="row-magistral">
-<td class="hora">09:00 – 09:15</td>
-<td data-i18n="day3.row2">Magistral 9: Juan Carlos — Universidad de Los Andes — De la membrana bacteriana al citoplasma humano: diseño racional de nanobioconjugados para edición génica</td>
+
+<td class="hora">
+09:00 – 09:15
+</td>
+
+<td data-i18n="day3.row2">
+Magistral 1: Juan Carlos — Universidad de Los Andes — De la membrana bacteriana al citoplasma humano: diseño racional de nanobioconjugados para edición génica
+</td>
+
 </tr>
+
+
 <tr class="row-ponencia">
-<td class="hora">09:15 – 09:30</td>
-<td data-i18n="day3.row3">Ponencia 17: Antony Camilo Restrepo Leguizamón — Análisis filogenético molecular y mapeo de motivos en hidrofobinas fúngicas: implicaciones para el diseño de biomateriales anfipáticos sintéticos.</td>
+
+<td class="hora">
+09:15 – 09:30
+</td>
+
+<td data-i18n="day3.row3">
+Ponencia 1: Antony Camilo Restrepo Leguizamón — Análisis filogenético molecular y mapeo de motivos en hidrofobinas fúngicas: implicaciones para el diseño de biomateriales anfipáticos sintéticos.
+</td>
+
 </tr>
+
+
 <tr class="row-ponencia">
-<td class="hora">09:30 – 09:45</td>
-<td data-i18n="day3.row4">Ponencia 18: Johann Sebastian Gallego Sierra — Desarrollo de un pipeline bioinformático para el análisis de microbiomas del suelo mediante secuenciación completa del gen 16S con Oxford Nanopore MinION.</td>
+
+<td class="hora">
+09:30 – 09:45
+</td>
+
+<td data-i18n="day3.row4">
+Ponencia 2: Johann Sebastian Gallego Sierra — Desarrollo de un pipeline bioinformático para el análisis de microbiomas del suelo mediante secuenciación completa del gen 16S con Oxford Nanopore MinION.
+</td>
+
 </tr>
+
+
 <tr class="row-magistral">
-<td class="hora">09:45 – 10:00</td>
-<td data-i18n="day3.row5">Magistral 10: Javier Andrés Matulevich Pelaez — Universidad Distrital Francisco José de Caldas — Identificación de biomarcadores antifúngicos en especies del género <em>Piper</em> mediante metabolómica no dirigida para el control de fitopatógenos en passifloras</td>
+
+<td class="hora">
+09:45 – 10:00
+</td>
+
+<td data-i18n="day3.row5">
+Magistral 2: Javier Andrés Matulevich Pelaez — Universidad Distrital Francisco José de Caldas — Identificación de biomarcadores antifúngicos en especies del género <em>Piper</em> mediante metabolómica no dirigida para el control de fitopatógenos en passifloras
+</td>
+
 </tr>
+
+
 <tr class="row-break">
-<td class="hora">10:00 – 10:15</td>
-<td data-i18n="day3.row6">Coffee break</td>
+
+<td class="hora">
+10:00 – 10:15
+</td>
+
+<td data-i18n="day3.row6">
+Coffee break
+</td>
+
 </tr>
+
+
 <tr class="row-magistral">
-<td class="hora">10:15 – 10:30</td>
-<td data-i18n="day3.row7">Magistral 11: Paola — Universidad de Cambridge — Explotación de proteínas bacterianas para el desarrollo de biosensores FRET</td>
+
+<td class="hora">
+10:15 – 10:30
+</td>
+
+<td data-i18n="day3.row7">
+Magistral 3: Paola Andrea Asprilla Carabali — Universidad de Cambridge — Explotación de proteínas bacterianas para el desarrollo de biosensores FRET
+</td>
+
 </tr>
+
+
 <tr class="row-ponencia">
-<td class="hora">10:30 – 10:45</td>
-<td data-i18n="day3.row8">Ponencia 19: Carlos Nieto Clavijo — Reorganización del ecosistema intestinal en adultos colombianos con dermatitis atópica: un análisis mediante secuenciación de nueva generación.</td>
+
+<td class="hora">
+10:30 – 10:45
+</td>
+
+<td data-i18n="day3.row8">
+Ponencia 3: Carlos Nieto Clavijo — Reorganización del ecosistema intestinal en adultos colombianos con dermatitis atópica: un análisis mediante secuenciación de nueva generación.
+</td>
+
 </tr>
+
+
 <tr class="row-ponencia">
-<td class="hora">10:45 – 11:00</td>
-<td data-i18n="day3.row9">Ponencia 20: Axel Alejandro Ramos García — BugIQ: A NeuroSymbolic Graph Neural Network for Inductive Antimicrobial Resistance.</td>
+
+<td class="hora">
+10:45 – 11:00
+</td>
+
+<td data-i18n="day3.row9">
+Ponencia 4: Axel Alejandro Ramos García — BugIQ: A NeuroSymbolic Graph Neural Network for Inductive Antimicrobial Resistance.
+</td>
+
 </tr>
+
+
+<tr class="row-ponencia">
+
+<td class="hora">
+11:00 – 11:15
+</td>
+
+<td data-i18n="day3.row10">
+Ponencia 5: Como la biofisica nos conecta - Invitado especial
+</td>
+
+</tr>
+
+
 <tr class="row-foro">
-<td class="hora">11:00 – 11:30</td>
-<td data-i18n="day3.row10">Foro: Biofísica en microbiología</td>
+
+<td class="hora">
+11:15 – 11:45
+</td>
+
+<td data-i18n="day3.row11">
+Foro Cooperación:  Tito David Peña, Luz Ángela Gonzalez & José Alfonso Leyva
+</td>
+
 </tr>
+
+
 <tr class="row-posters">
-<td class="hora">11:30 – 12:30</td>
-<td data-i18n="day3.row11">Sesión de pósteres</td>
+
+<td class="hora">
+11:45 – 12:45
+</td>
+
+<td data-i18n="day3.row12">
+Sesión de Posters
+</td>
+
 </tr>
+
+
 <tr class="row-almuerzo">
-<td class="hora">12:30 – 13:30</td>
-<td data-i18n="day3.row12">Almuerzo patrocinado por ISLA</td>
+
+<td class="hora">
+12:45 – 13:45
+</td>
+
+<td data-i18n="day3.row13">
+Almuerzo patrocinado por ISLA
+</td>
+
 </tr>
+
+
 <tr class="row-magistral">
-<td class="hora">13:30 – 13:45</td>
-<td data-i18n="day3.row13">Magistral 12: Yaremis Beatriz Meriño Cabrera — Universidade Federal de Viçosa — De la estructura al bioproceso: Bioinformática Estructural aplicada a la Microbiología y Biotecnología</td>
+
+<td class="hora">
+13:45 – 14:00
+</td>
+
+<td data-i18n="day3.row14">
+Magistral 4: Yaremis Beatriz Meriño Cabrera — Universidade Federal de Viçosa — De la estructura al bioproceso: Bioinformática Estructural aplicada a la Microbiología y Biotecnología
+</td>
+
 </tr>
+
+
 <tr class="row-ponencia">
-<td class="hora">13:45 – 14:00</td>
-<td data-i18n="day3.row14">Ponencia 21: María Teresa Páez González — Cheminformatics-Guided Identification of Antimicrobial Phytochemicals from <em>Dodonaea viscosa</em> Against Oral Pathogens.</td>
+
+<td class="hora">
+14:00 – 14:15
+</td>
+
+<td data-i18n="day3.row15">
+Ponencia 6: María Teresa Páez González — Cheminformatics-Guided Identification of Antimicrobial Phytochemicals from <em>Dodonaea viscosa</em> Against Oral Pathogens.
+</td>
+
 </tr>
+
+
 <tr class="row-ponencia">
-<td class="hora">14:00 – 14:15</td>
-<td data-i18n="day3.row15">Ponencia 22: Sara Norato — Aproximaciones de análisis de grupos funcionales derivados de datos metataxonómicos en el contexto de salud del suelo.</td>
+
+<td class="hora">
+14:15 – 14:30
+</td>
+
+<td data-i18n="day3.row16">
+Ponencia 7: Sara Norato — Aproximaciones de análisis de grupos funcionales derivados de datos metataxonómicos en el contexto de salud del suelo.
+</td>
+
 </tr>
+
+
 <tr class="row-break">
-<td class="hora">14:15 – 14:30</td>
-<td data-i18n="day3.row16">Coffee break</td>
+
+<td class="hora">
+14:30 – 14:45
+</td>
+
+<td data-i18n="day3.row17">
+Coffee break
+</td>
+
 </tr>
+
+
 <tr class="row-ponencia">
-<td class="hora">14:30 – 14:45</td>
-<td data-i18n="day3.row17">Ponencia 23: Ana Sofía Montes Alba — Descifrando el diálogo microbiota-hospedero: biología sintética para rastrear proteínas con localización nuclear en la microbiota de <em>Caenorhabditis elegans</em>.</td>
+
+<td class="hora">
+14:45 – 15:00
+</td>
+
+<td data-i18n="day3.row18">
+Ponencia 8: Ana Sofía Montes Alba — Descifrando el diálogo microbiota-hospedero: biología sintética para rastrear proteínas con localización nuclear en la microbiota de <em>Caenorhabditis elegans</em>.
+</td>
+
 </tr>
+
+
 <tr class="row-ponencia">
-<td class="hora">14:45 – 15:00</td>
-<td data-i18n="day3.row18">Ponencia 24: Hazam David Baquero Cuervo — Bioprospección metagenómica y análisis computacional de microorganismos productores de polihidroxialcanoatos en biosólidos de la PTAR El Salitre.</td>
+
+<td class="hora">
+15:00 – 15:15
+</td>
+
+<td data-i18n="day3.row19">
+Ponencia 9: Hazam David Baquero Cuervo — Bioprospección metagenómica y análisis computacional de microorganismos productores de polihidroxialcanoatos en biosólidos de la PTAR El Salitre24.
+</td>
+
 </tr>
+
+
 <tr class="row-clausura">
-<td class="hora">15:15 – 15:45</td>
-<td data-i18n="day3.row19">Clausura y premiación</td>
+
+<td class="hora">
+15:15 – 15:45
+</td>
+
+<td data-i18n="day3.row20">
+Clausura y Premiación
+</td>
+
 </tr>
+
+
 </tbody>
 </table>
+
 </div>
+
 </section>
 </main>
+
+
 <footer style="padding: 20px 0; text-align: center; width: 100%;">
-<hr style="border: none; border-top: 1px solid #212121; opacity: 0.2; margin: 0 auto 1rem auto; width: 90%;"/>
-<div style="font-family: 'Open Sans', Arial, sans-serif; color: #616161; font-size: 14px;">
-<p data-i18n="footer.copyright" style="margin: 5px 0;">© 2° Encuentro de Microbiología — EMIC 2026 - Facultad de Ciencias Matemáticas y Naturales · Universidad Distrital Francisco José de Caldas &amp; Semillero de Investigación en Microbiología Aplicada – MICRAP</p>
+
+<hr
+style="
+border: none;
+border-top: 1px solid #212121;
+opacity: 0.2;
+margin: 0 auto 1rem auto;
+width: 90%;
+"
+/>
+
+<div
+style="
+font-family: 'Open Sans', Arial, sans-serif;
+color: #616161;
+font-size: 14px;
+"
+>
+
+<p
+data-i18n="footer.copyright"
+style="margin: 5px 0;"
+>
+© 2° Encuentro de Microbiología — EMIC 2026 - Facultad de Ciencias Matemáticas y Naturales · Universidad Distrital Francisco José de Caldas &amp; Semillero de Investigación en Microbiología Aplicada – MICRAP
+</p>
+
 </div>
+
 </footer>
+
+
 <script>
-    const translations = {
-  "es": {
-    "nav.brand": "II Encuentro de Microbiología",
-    "nav.about": "Acerca del Encuentro",
-    "nav.media": "Medios Visuales",
-    "nav.sponsor": "Patrocinadores",
-    "nav.guests": "Cursos precongreso",
-    "nav.program": "Programa",
-    "nav.register": "Registro",
-    "nav.location": "Lugar",
-    "nav.committee": "Organizadores",
-    "nav.contact": "Contacto",
-    "nav.agradecimientos": "Agradecimientos",
-    "program.title": "Cronograma - Auditorio Fundadores",
-    "program.subtitle": "EMIC 2026 · 26, 27 y 28 de agosto",
-    "program.time": "Hora",
-    "program.activity": "Actividad",
-    "program.location": "Auditorio Fundadores",
-    "footer.copyright": "© 2° Encuentro de Microbiología — EMIC 2026 - Facultad de Ciencias Matemáticas y Naturales · Universidad Distrital Francisco José de Caldas & Semillero de Investigación en Microbiología Aplicada – MICRAP",
-    "footer.developed": "Desarrollado por el Semillero de MICRAP",
-    "program.day1.badge": "Eje temático 1",
-    "program.day1.title": "Miércoles 26 de agosto",
-    "program.day1.axis": "Microbiología médica, virología, parasitología, farmacología y tecnologías biomédicas",
-    "day1.row1": "Registro de asistentes",
-    "day1.row2": "Ceremonia de apertura — Ángela María Wilches Flórez — Magistral: La vida invisible y la condición humana: aportes de las biohumanidades a la sostenibilidad",
-    "day1.row3": "Magistral 1: Carolina Muñoz — Universidad de Los Andes — Estrategias híbridas computacionales y experimentales para optimizar la búsqueda de compuestos antimicrobianos en la biodiversidad",
-    "day1.row4": "Ponencia 1: Sara Tatiana Niño Capador — No todos los coxsackievirus son iguales: heterogeneidad entre serotipos en la patogénesis de la diabetes tipo 1.",
-    "day1.row5": "Ponencia 2: Carolina Reyes Perdomo — Resistencia antimicrobiana en ambientes acuáticos con alto impacto antropogénico: vigilancia basada en análisis microbiológico y genómico bajo un enfoque One Health.",
-    "day1.row6": "Magistral 2: Javier Bustamante — Universidad del Valle — Cuando la infección y la desnutrición convergen: hallazgos sobre <em>Helicobacter pylori</em> en niños menores de 5 años de Cali, Colombia",
-    "day1.row7": "Coffee break",
-    "day1.row8": "Magistral 3: María José Cadavid Lanao — Universidad El Bosque — El uso de los microorganismos en oncología",
-    "day1.row9": "Ponencia 3: Margie Lorena Rodríguez Romero — Susceptibilidad in vitro a aztreonam/avibactam y comparadores frente a Enterobacterales productores de β-lactamasas.",
-    "day1.row10": "Ponencia 4: Santiago Sánchez Martínez — Asimetría en la evidencia experimental sobre evasión inmune del VPH de alto riesgo.",
-    "day1.row11": "Foro: Microbiotas",
-    "day1.row12": "Sesión de pósteres",
-    "day1.row13": "Almuerzo patrocinado por POLCO",
-    "day1.row14": "Magistral 4: Sergio Córdoba Córdoba — Universidad Distrital Francisco José de Caldas — Ecología y evolución de enfermedades zoonóticas en aves",
-    "day1.row15": "Ponencia 5: Sebastián Contreras Pérez — Análisis del tratamiento combinado entre el inhibidor Pkc1 (NPC15437) y caspofungina frente a <em>Neocosmospora keratoplastica</em>.",
-    "day1.row16": "Ponencia 6: Leidy Alejandra Giraldo Martínez — Caracterización molecular del sitio de clivaje S1/S2 y del gen accesorio 3C del coronavirus felino en gatos naturalmente infectados de Colombia.",
-    "day1.row17": "Coffee break",
-    "day1.row18": "Magistral 8: José Alfonso Leyva — Universidad Javeriana — Virus del Zika y Membrana Celular",
-    "day1.row19": "Ponencia 7: Farley Adriana Garavito Jaimes &amp; Leidy Alejandra Giraldo Martínez — Detección molecular de microfilarias en caninos y felinos de Bogotá, Colombia.",
-    "day1.row20": "Ponencia 8: Andrés Rincón-Riveros — Network Fragmentation and Selective Microbial Depletion Define the Epithelial Ovarian Cancer Microbiome in Colombia.",
-    "program.day2.badge": "Eje temático 2",
-    "program.day2.title": "Jueves 27 de agosto",
-    "program.day2.axis": "Ecología microbiana, microbiología agrícola y biotecnología ambiental",
-    "day2.row1": "Registro de asistentes",
-    "day2.row2": "Magistral 5: Sergio Alberto Díaz Gallo — Universidad Escuela Colombiana de Ingeniería — Sistemas de compostaje y análisis de diversidad microbiana",
-    "day2.row3": "Ponencia 9: Nataly Alejandra Rodríguez Lugo — Comunidades bacterianas y fúngicas asociadas a las raíces de la bromelia de páramo amenazada <em>Puya goudotiana</em>.",
-    "day2.row4": "Ponencia 10: Natalia Prada Matallana — Evaluación del impacto antropogénico sobre los microorganismos mediadores del ciclo del fósforo en suelos del Páramo de Sumapaz.",
-    "day2.row5": "Magistral 6: David Tovar — Universidad Distrital Francisco José de Caldas — Microorganismos endolíticos en rocas máficas y ultramáficas de la Isla Gorgona: una perspectiva astrobiológica",
-    "day2.row6": "Coffee break",
-    "day2.row7": "Magistral 7: María Angélica Leal Leal — Universidad Distrital Francisco José de Caldas — Ambientes extremos y su ecología, la clave para la astrobiología",
-    "day2.row8": "Ponencia 11: Paula Andrea Zea Garzón — Evaluación del potencial de bacterias rizosféricas asociadas a <em>Eruca vesicaria</em> como alternativa biológica para el control de <em>Botrytis</em> spp.",
-    "day2.row9": "Ponencia 12: Ana María Martínez Torres — Caracterización de ramnolípidos producidos por cepas de <em>Pseudomonas</em> spp. y evaluación de su actividad antimicrobiana frente a patógenos de importancia pecuaria.",
-    "day2.row10": "Foro: Biotecnologías",
-    "day2.row11": "Sesión de pósteres",
-    "day2.row12": "Almuerzo patrocinado por ROCHEM BIOCARE",
-    "day2.row13": "Ponencia 13: Dania Alejandra Holguín Espejo — Impacto de diferentes variables de proceso en la producción de vino tinto a partir de la uva <em>Vitis labrusca</em>.",
-    "day2.row14": "Ponencia 14: Caracterización de bacterias rizosféricas y su efecto como promotoras de crecimiento vegetal en dos variedades de <em>Coffea arabica</em> L. bajo condiciones de déficit hídrico",
-    "day2.row15": "Magistral 13: Cuauhtémoc Licona-Cassani — Universidad Nacional Autónoma de México — Metabologenómica para descubrir microbios que protegen cultivos contra <em>Colletotrichum</em>",
-    "day2.row16": "Coffee break",
-    "day2.row17": "Magistral 14: José Utrilla Carreri — Universidad Nacional Autónoma de México — Genómica funcional para el mejoramiento de bacterias chasis en biología sintética",
-    "day2.row18": "Ponencia 15: Danna Camila Cely Holguín — Evaluación de diferentes medios de cultivo para el aislamiento de <em>Phytophthora infestans</em> bajo condiciones controladas.",
-    "day2.row19": "Ponencia 16: Luis Ángel Chicoma Rojas — Integrated bioassay-guided and genome-based bioprospecting reveals insecticidal and plant growth-promoting potential in <em>Burkholderia thailandensis</em> JBC02.",
-    "day2.row20": "Foro Cooperación",
-    "program.day3.badge": "Eje temático 3",
-    "program.day3.title": "Viernes 28 de agosto",
-    "program.day3.axis": "Biología computacional, biología sintética, bioinformática y ciencias ómicas",
-    "day3.row1": "Registro de asistentes",
-    "day3.row2": "Magistral 9: Juan Carlos — Universidad de Los Andes — De la membrana bacteriana al citoplasma humano: diseño racional de nanobioconjugados para edición génica",
-    "day3.row3": "Ponencia 17: Antony Camilo Restrepo Leguizamón — Análisis filogenético molecular y mapeo de motivos en hidrofobinas fúngicas: implicaciones para el diseño de biomateriales anfipáticos sintéticos.",
-    "day3.row4": "Ponencia 18: Johann Sebastian Gallego Sierra — Desarrollo de un pipeline bioinformático para el análisis de microbiomas del suelo mediante secuenciación completa del gen 16S con Oxford Nanopore MinION.",
-    "day3.row5": "Magistral 10: Javier Andrés Matulevich Pelaez — Universidad Distrital Francisco José de Caldas — Identificación de biomarcadores antifúngicos en especies del género <em>Piper</em> mediante metabolómica no dirigida para el control de fitopatógenos en passifloras",
-    "day3.row6": "Coffee break",
-    "day3.row7": "Magistral 11: Paola — Universidad de Cambridge — Explotación de proteínas bacterianas para el desarrollo de biosensores FRET",
-    "day3.row8": "Ponencia 19: Carlos Nieto Clavijo — Reorganización del ecosistema intestinal en adultos colombianos con dermatitis atópica: un análisis mediante secuenciación de nueva generación.",
-    "day3.row9": "Ponencia 20: Axel Alejandro Ramos García — BugIQ: A NeuroSymbolic Graph Neural Network for Inductive Antimicrobial Resistance.",
-    "day3.row10": "Foro: Biofísica en microbiología",
-    "day3.row11": "Sesión de pósteres",
-    "day3.row12": "Almuerzo patrocinado por ISLA",
-    "day3.row13": "Magistral 12: Yaremis Beatriz Meriño Cabrera — Universidade Federal de Viçosa — De la estructura al bioproceso: Bioinformática Estructural aplicada a la Microbiología y Biotecnología",
-    "day3.row14": "Ponencia 21: María Teresa Páez González — Cheminformatics-Guided Identification of Antimicrobial Phytochemicals from <em>Dodonaea viscosa</em> Against Oral Pathogens.",
-    "day3.row15": "Ponencia 22: Sara Norato — Aproximaciones de análisis de grupos funcionales derivados de datos metataxonómicos en el contexto de salud del suelo.",
-    "day3.row16": "Coffee break",
-    "day3.row17": "Ponencia 23: Ana Sofía Montes Alba — Descifrando el diálogo microbiota-hospedero: biología sintética para rastrear proteínas con localización nuclear en la microbiota de <em>Caenorhabditis elegans</em>.",
-    "day3.row18": "Ponencia 24: Hazam David Baquero Cuervo — Bioprospección metagenómica y análisis computacional de microorganismos productores de polihidroxialcanoatos en biosólidos de la PTAR El Salitre.",
-    "day3.row19": "Clausura y premiación"
-  },
-  "en": {
-    "nav.brand": "2nd Microbiology Meeting",
-    "nav.about": "About the Meeting",
-    "nav.media": "Visual Media",
-    "nav.sponsor": "Sponsors",
-    "nav.guests": "pre-congress courses",
-    "nav.program": "Program",
-    "nav.register": "Registration",
-    "nav.location": "Location",
-    "nav.committee": "Organizers",
-    "nav.contact": "Contact",
-    "nav.agradecimientos": "Acknowledgments",
-    "program.title": "Schedule - Fundadores Auditorium",
-    "program.subtitle": "EMIC 2026 · August 26, 27 and 28",
-    "program.time": "Time",
-    "program.activity": "Activity",
-    "program.location": "Fundadores Auditorium",
-    "footer.copyright": "© 2nd Microbiology Meeting — EMIC 2026 - Faculty of Mathematical and Natural Sciences · Universidad Distrital Francisco José de Caldas & Applied Microbiology Research Group – MICRAP",
-    "footer.developed": "Developed by the MICRAP Research Group",
-    "program.day1.badge": "Thematic track 1",
-    "program.day1.title": "Wednesday, August 26",
-    "program.day1.axis": "Medical microbiology, virology, parasitology, pharmacology and biomedical technologies",
-    "day1.row1": "Attendee registration",
-    "day1.row2": "Opening ceremony — Ángela María Wilches Flórez — Keynote: Invisible Life and the Human Condition: Contributions of the Biohumanities to Sustainability",
-    "day1.row3": "Keynote 1: Carolina Muñoz — Universidad de Los Andes — Hybrid computational and experimental strategies to optimize the search for antimicrobial compounds in biodiversity",
-    "day1.row4": "Oral presentation 1: Sara Tatiana Niño Capador — Not all coxsackieviruses are the same: heterogeneity among serotypes in the pathogenesis of type 1 diabetes.",
-    "day1.row5": "Oral presentation 2: Carolina Reyes Perdomo — Antimicrobial resistance in aquatic environments with high anthropogenic impact: surveillance based on microbiological and genomic analysis under a One Health approach.",
-    "day1.row6": "Keynote 2: Javier Bustamante — Universidad del Valle — When infection and malnutrition converge: findings on <em>Helicobacter pylori</em> in children under five years of age in Cali, Colombia",
-    "day1.row7": "Coffee break",
-    "day1.row8": "Keynote 3: María José Cadavid Lanao — Universidad El Bosque — The use of microorganisms in oncology",
-    "day1.row9": "Oral presentation 3: Margie Lorena Rodríguez Romero — In vitro susceptibility to aztreonam/avibactam and comparators against β-lactamase-producing Enterobacterales.",
-    "day1.row10": "Oral presentation 4: Santiago Sánchez Martínez — Asymmetry in the experimental evidence on immune evasion by high-risk HPV.",
-    "day1.row11": "Forum: Microbiotas",
-    "day1.row12": "Poster session",
-    "day1.row13": "Lunch sponsored by POLCO",
-    "day1.row14": "Keynote 4: Sergio Córdoba Córdoba — Universidad Distrital Francisco José de Caldas — Ecology and evolution of zoonotic diseases in birds",
-    "day1.row15": "Oral presentation 5: Sebastián Contreras Pérez — Analysis of combined treatment with the Pkc1 inhibitor (NPC15437) and caspofungin against <em>Neocosmospora keratoplastica</em>.",
-    "day1.row16": "Oral presentation 6: Leidy Alejandra Giraldo Martínez — Molecular characterization of the S1/S2 cleavage site and accessory gene 3C of feline coronavirus in naturally infected cats from Colombia.",
-    "day1.row17": "Coffee break",
-    "day1.row18": "Keynote 8: José Alfonso Leyva — Universidad Javeriana — Zika virus and the cell membrane",
-    "day1.row19": "Oral presentation 7: Farley Adriana Garavito Jaimes &amp; Leidy Alejandra Giraldo Martínez — Molecular detection of microfilariae in dogs and cats from Bogotá, Colombia.",
-    "day1.row20": "Oral presentation 8: Andrés Rincón-Riveros — Network Fragmentation and Selective Microbial Depletion Define the Epithelial Ovarian Cancer Microbiome in Colombia.",
-    "program.day2.badge": "Thematic track 2",
-    "program.day2.title": "Thursday, August 27",
-    "program.day2.axis": "Microbial ecology, agricultural microbiology and environmental biotechnology",
-    "day2.row1": "Attendee registration",
-    "day2.row2": "Keynote 5: Sergio Alberto Díaz Gallo — Universidad Escuela Colombiana de Ingeniería — Composting systems and microbial diversity analysis",
-    "day2.row3": "Oral presentation 9: Nataly Alejandra Rodríguez Lugo — Bacterial and fungal communities associated with the roots of the threatened páramo bromeliad <em>Puya goudotiana</em>.",
-    "day2.row4": "Oral presentation 10: Natalia Prada Matallana — Assessment of the anthropogenic impact on microorganisms that mediate the phosphorus cycle in soils of the Sumapaz Páramo.",
-    "day2.row5": "Keynote 6: David Tovar — Universidad Distrital Francisco José de Caldas — Endolithic microorganisms in mafic and ultramafic rocks from Gorgona Island: an astrobiological perspective",
-    "day2.row6": "Coffee break",
-    "day2.row7": "Keynote 7: María Angélica Leal Leal — Universidad Distrital Francisco José de Caldas — Extreme environments and their ecology: the key to astrobiology",
-    "day2.row8": "Oral presentation 11: Paula Andrea Zea Garzón — Assessment of the potential of rhizospheric bacteria associated with <em>Eruca vesicaria</em> as a biological alternative for the control of <em>Botrytis</em> spp.",
-    "day2.row9": "Oral presentation 12: Ana María Martínez Torres — Characterization of rhamnolipids produced by <em>Pseudomonas</em> spp. strains and assessment of their antimicrobial activity against pathogens of livestock importance.",
-    "day2.row10": "Forum: Biotechnologies",
-    "day2.row11": "Poster session",
-    "day2.row12": "Lunch sponsored by ROCHEM BIOCARE",
-    "day2.row13": "Oral presentation 13: Dania Alejandra Holguín Espejo — Impact of different process variables on the production of red wine from <em>Vitis labrusca</em> grapes.",
-    "day2.row14": "Oral presentation 14: Characterization of rhizospheric bacteria and their plant growth-promoting effect on two varieties of <em>Coffea arabica</em> L. under water-deficit conditions",
-    "day2.row15": "Keynote 13: Cuauhtémoc Licona-Cassani — Universidad Nacional Autónoma de México — Metabologenomics to discover microbes that protect crops against <em>Colletotrichum</em>",
-    "day2.row16": "Coffee break",
-    "day2.row17": "Keynote 14: José Utrilla Carreri — Universidad Nacional Autónoma de México — Functional genomics for improving chassis bacteria in synthetic biology",
-    "day2.row18": "Oral presentation 15: Danna Camila Cely Holguín — Assessment of different culture media for the isolation of <em>Phytophthora infestans</em> under controlled conditions.",
-    "day2.row19": "Oral presentation 16: Luis Ángel Chicoma Rojas — Integrated bioassay-guided and genome-based bioprospecting reveals insecticidal and plant growth-promoting potential in <em>Burkholderia thailandensis</em> JBC02.",
-    "day2.row20": "Cooperation forum",
-    "program.day3.badge": "Thematic track 3",
-    "program.day3.title": "Friday, August 28",
-    "program.day3.axis": "Computational biology, synthetic biology, bioinformatics and omics sciences",
-    "day3.row1": "Attendee registration",
-    "day3.row2": "Keynote 9: Juan Carlos — Universidad de Los Andes — From the bacterial membrane to the human cytoplasm: rational design of nanobioconjugates for gene editing",
-    "day3.row3": "Oral presentation 17: Antony Camilo Restrepo Leguizamón — Molecular phylogenetic analysis and motif mapping in fungal hydrophobins: implications for the design of synthetic amphipathic biomaterials.",
-    "day3.row4": "Oral presentation 18: Johann Sebastian Gallego Sierra — Development of a bioinformatics pipeline for soil microbiome analysis using full-length 16S gene sequencing with Oxford Nanopore MinION.",
-    "day3.row5": "Keynote 10: Javier Andrés Matulevich Pelaez — Universidad Distrital Francisco José de Caldas — Identification of antifungal biomarkers in species of the genus <em>Piper</em> through untargeted metabolomics for the control of phytopathogens in passionflowers",
-    "day3.row6": "Coffee break",
-    "day3.row7": "Keynote 11: Paola — University of Cambridge — Exploiting bacterial proteins for the development of FRET biosensors",
-    "day3.row8": "Oral presentation 19: Carlos Nieto Clavijo — Reorganization of the intestinal ecosystem in Colombian adults with atopic dermatitis: a next-generation sequencing analysis.",
-    "day3.row9": "Oral presentation 20: Axel Alejandro Ramos García — BugIQ: A NeuroSymbolic Graph Neural Network for Inductive Antimicrobial Resistance.",
-    "day3.row10": "Forum: Biophysics in microbiology",
-    "day3.row11": "Poster session",
-    "day3.row12": "Lunch sponsored by ISLA",
-    "day3.row13": "Keynote 12: Yaremis Beatriz Meriño Cabrera — Universidade Federal de Viçosa — From structure to bioprocess: structural bioinformatics applied to microbiology and biotechnology",
-    "day3.row14": "Oral presentation 21: María Teresa Páez González — Cheminformatics-Guided Identification of Antimicrobial Phytochemicals from <em>Dodonaea viscosa</em> Against Oral Pathogens.",
-    "day3.row15": "Oral presentation 22: Sara Norato — Functional group analysis approaches derived from metataxonomic data in the context of soil health.",
-    "day3.row16": "Coffee break",
-    "day3.row17": "Oral presentation 23: Ana Sofía Montes Alba — Deciphering the microbiota-host dialogue: synthetic biology to track nuclear-localized proteins in the microbiota of <em>Caenorhabditis elegans</em>.",
-    "day3.row18": "Oral presentation 24: Hazam David Baquero Cuervo — Metagenomic bioprospecting and computational analysis of polyhydroxyalkanoate-producing microorganisms in biosolids from the El Salitre wastewater treatment plant.",
-    "day3.row19": "Closing ceremony and awards"
-  }
+
+const translations = {
+
+"es": {
+
+"nav.brand": "II Encuentro de Microbiología",
+"nav.about": "Acerca del Encuentro",
+"nav.media": "Medios Visuales",
+"nav.sponsor": "Patrocinadores",
+"nav.guests": "Cursos precongreso",
+"nav.program": "Programa",
+"nav.register": "Registro",
+"nav.location": "Lugar",
+"nav.committee": "Organizadores",
+"nav.contact": "Contacto",
+"nav.agradecimientos": "Agradecimientos",
+
+"program.title":
+"Cronograma - Auditorio Fundadores",
+
+"program.subtitle":
+"EMIC 2026 · 28 de agosto",
+
+"program.time":
+"Hora",
+
+"program.activity":
+"Actividad",
+
+"program.location":
+"Auditorio Fundadores",
+
+"footer.copyright":
+"© 2° Encuentro de Microbiología — EMIC 2026 - Facultad de Ciencias Matemáticas y Naturales · Universidad Distrital Francisco José de Caldas & Semillero de Investigación en Microbiología Aplicada – MICRAP",
+
+"footer.developed":
+"Desarrollado por el Semillero de MICRAP",
+
+
+"program.day3.badge":
+"Eje temático 3",
+
+"program.day3.title":
+"Viernes 28 de agosto",
+
+"program.day3.axis":
+"Biología computacional, biología sintética, bioinformática y ciencias ómicas",
+
+
+"day3.row1":
+"Registro de asistentes",
+
+
+"day3.row2":
+"Magistral 1: Juan Carlos — Universidad de Los Andes — De la membrana bacteriana al citoplasma humano: diseño racional de nanobioconjugados para edición génica",
+
+
+"day3.row3":
+"Ponencia 1: Antony Camilo Restrepo Leguizamón — Análisis filogenético molecular y mapeo de motivos en hidrofobinas fúngicas: implicaciones para el diseño de biomateriales anfipáticos sintéticos.",
+
+
+"day3.row4":
+"Ponencia 2: Johann Sebastian Gallego Sierra — Desarrollo de un pipeline bioinformático para el análisis de microbiomas del suelo mediante secuenciación completa del gen 16S con Oxford Nanopore MinION.",
+
+
+"day3.row5":
+"Magistral 2: Javier Andrés Matulevich Pelaez — Universidad Distrital Francisco José de Caldas — Identificación de biomarcadores antifúngicos en especies del género <em>Piper</em> mediante metabolómica no dirigida para el control de fitopatógenos en passifloras",
+
+
+"day3.row6":
+"Coffee break",
+
+
+"day3.row7":
+"Magistral 3: Paola Andrea Asprilla Carabali — Universidad de Cambridge — Explotación de proteínas bacterianas para el desarrollo de biosensores FRET",
+
+
+"day3.row8":
+"Ponencia 3: Carlos Nieto Clavijo — Reorganización del ecosistema intestinal en adultos colombianos con dermatitis atópica: un análisis mediante secuenciación de nueva generación.",
+
+
+"day3.row9":
+"Ponencia 4: Axel Alejandro Ramos García — BugIQ: A NeuroSymbolic Graph Neural Network for Inductive Antimicrobial Resistance.",
+
+
+"day3.row10":
+"Ponencia 5: Como la biofisica nos conecta - invitado especial",
+
+
+"day3.row11":
+"Foro Cooperación: Tito David Peña, Luz Ángela Gonzalez & José Alfonso Leyva",
+
+
+"day3.row12":
+"Sesión de Posters",
+
+
+"day3.row13":
+"Almuerzo patrocinado por ISLA",
+
+
+"day3.row14":
+"Magistral 4: Yaremis Beatriz Meriño Cabrera — Universidade Federal de Viçosa — De la estructura al bioproceso: Bioinformática Estructural aplicada a la Microbiología y Biotecnología",
+
+
+"day3.row15":
+"Ponencia 6: María Teresa Páez González — Cheminformatics-Guided Identification of Antimicrobial Phytochemicals from <em>Dodonaea viscosa</em> Against Oral Pathogens.",
+
+
+"day3.row16":
+"Ponencia 7: Sara Norato — Aproximaciones de análisis de grupos funcionales derivados de datos metataxonómicos en el contexto de salud del suelo.",
+
+
+"day3.row17":
+"Coffee break",
+
+
+"day3.row18":
+"Ponencia 8: Ana Sofía Montes Alba — Descifrando el diálogo microbiota-hospedero: biología sintética para rastrear proteínas con localización nuclear en la microbiota de <em>Caenorhabditis elegans</em>.",
+
+
+"day3.row19":
+"Ponencia 9: Hazam David Baquero Cuervo — Bioprospección metagenómica y análisis computacional de microorganismos productores de polihidroxialcanoatos en biosólidos de la PTAR El Salitre24.",
+
+
+"day3.row20":
+"Clausura y Premiación"
+
+},
+
+
+"en": {
+
+"nav.brand":
+"2nd Microbiology Meeting",
+
+"nav.about":
+"About the Meeting",
+
+"nav.media":
+"Visual Media",
+
+"nav.sponsor":
+"Sponsors",
+
+"nav.guests":
+"Pre-congress courses",
+
+"nav.program":
+"Program",
+
+"nav.register":
+"Registration",
+
+"nav.location":
+"Location",
+
+"nav.committee":
+"Organizers",
+
+"nav.contact":
+"Contact",
+
+"nav.agradecimientos":
+"Acknowledgments",
+
+"program.title":
+"Schedule - Fundadores Auditorium",
+
+"program.subtitle":
+"EMIC 2026 · August 28",
+
+"program.time":
+"Time",
+
+"program.activity":
+"Activity",
+
+"program.location":
+"Fundadores Auditorium",
+
+"footer.copyright":
+"© 2nd Microbiology Meeting — EMIC 2026 - Faculty of Mathematical and Natural Sciences · Universidad Distrital Francisco José de Caldas & Applied Microbiology Research Group – MICRAP",
+
+"footer.developed":
+"Developed by the MICRAP Research Group",
+
+"program.day3.badge":
+"Thematic track 3",
+
+"program.day3.title":
+"Friday, August 28",
+
+"program.day3.axis":
+"Computational biology, synthetic biology, bioinformatics and omics sciences",
+
+"day3.row1":
+"Attendee registration",
+
+"day3.row2":
+"Keynote 1: Juan Carlos — Universidad de Los Andes — From the bacterial membrane to the human cytoplasm: rational design of nanobioconjugates for gene editing",
+
+"day3.row3":
+"Oral presentation 1: Antony Camilo Restrepo Leguizamón — Molecular phylogenetic analysis and motif mapping in fungal hydrophobins: implications for the design of synthetic amphipathic biomaterials.",
+
+"day3.row4":
+"Oral presentation 2: Johann Sebastian Gallego Sierra — Development of a bioinformatics pipeline for soil microbiome analysis using full-length 16S gene sequencing with Oxford Nanopore MinION.",
+
+"day3.row5":
+"Keynote 2: Javier Andrés Matulevich Pelaez — Universidad Distrital Francisco José de Caldas — Identification of antifungal biomarkers in species of the genus <em>Piper</em> through untargeted metabolomics for the control of phytopathogens in passionflowers",
+
+"day3.row6":
+"Coffee break",
+
+"day3.row7":
+"Keynote 3: Paola — University of Cambridge — Exploiting bacterial proteins for the development of FRET biosensors",
+
+"day3.row8":
+"Oral presentation 3: Carlos Nieto Clavijo — Reorganization of the intestinal ecosystem in Colombian adults with atopic dermatitis: a next-generation sequencing analysis.",
+
+"day3.row9":
+"Oral presentation 4: Axel Alejandro Ramos García — BugIQ: A NeuroSymbolic Graph Neural Network for Inductive Antimicrobial Resistance.",
+
+"day3.row10":
+"Oral Presentation 5: How biophysics connects us",
+
+"day3.row11":
+"Cooperation Forum: Tito David Peña, Luz Ángela Gonzalez & José Alfonso Leyva",
+
+"day3.row12":
+"Poster session",
+
+"day3.row13":
+"Lunch sponsored by ISLA",
+
+"day3.row14":
+"Keynote 4: Yaremis Beatriz Meriño Cabrera — Universidade Federal de Viçosa — From structure to bioprocess: structural bioinformatics applied to microbiology and biotechnology",
+
+"day3.row15":
+"Oral presentation 6: María Teresa Páez González — Cheminformatics-Guided Identification of Antimicrobial Phytochemicals from <em>Dodonaea viscosa</em> Against Oral Pathogens.",
+
+"day3.row16":
+"Oral presentation 7: Sara Norato — Functional group analysis approaches derived from metataxonomic data in the context of soil health.",
+
+"day3.row17":
+"Coffee break",
+
+"day3.row18":
+"Oral presentation 8: Ana Sofía Montes Alba — Deciphering the microbiota-host dialogue: synthetic biology to track nuclear-localized proteins in the microbiota of <em>Caenorhabditis elegans</em>.",
+
+"day3.row19":
+"Oral presentation 9: Hazam David Baquero Cuervo — Metagenomic bioprospecting and computational analysis of polyhydroxyalkanoate-producing microorganisms in biosolids from the El Salitre wastewater treatment plant.",
+
+"day3.row20":
+"Closing ceremony and awards"
+
+}
+
 };
 
-    let currentLang = 'es';
-    try {
-      currentLang = localStorage.getItem('lang') || 'es';
-    } catch (error) {
-      currentLang = 'es';
+
+let currentLang = 'es';
+
+try {
+
+  currentLang =
+  localStorage.getItem('lang') || 'es';
+
+} catch (error) {
+
+  currentLang = 'es';
+
+}
+
+
+document.documentElement.lang =
+currentLang;
+
+
+function translate(lang) {
+
+  document
+  .querySelectorAll('[data-i18n]')
+  .forEach(el => {
+
+    const key =
+    el.getAttribute('data-i18n');
+
+    if (translations[lang]?.[key]) {
+
+      el.innerHTML =
+      translations[lang][key];
+
     }
-    document.documentElement.lang = currentLang;
 
-    function translate(lang) {
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang]?.[key]) el.innerHTML = translations[lang][key];
-      });
-      const langCode = document.querySelector('.lang-code');
-      if (langCode) langCode.textContent = lang === 'es' ? 'EN' : 'ES';
-      document.documentElement.lang = lang;
-      try {
-        localStorage.setItem('lang', lang);
-      } catch (error) {
-        // La traducción sigue funcionando aunque el navegador bloquee localStorage.
-      }
+  });
+
+
+  const langCode =
+  document.querySelector('.lang-code');
+
+
+  if (langCode) {
+
+    langCode.textContent =
+    lang === 'es'
+    ? 'EN'
+    : 'ES';
+
+  }
+
+
+  document.documentElement.lang =
+  lang;
+
+
+  try {
+
+    localStorage.setItem(
+      'lang',
+      lang
+    );
+
+  } catch (error) {
+
+    // La traducción sigue funcionando
+    // aunque el navegador bloquee localStorage.
+
+  }
+
+}
+
+
+translate(currentLang);
+
+
+document
+.getElementById('lang-toggle')
+?.addEventListener('click', () => {
+
+  currentLang =
+  currentLang === 'es'
+  ? 'en'
+  : 'es';
+
+  translate(currentLang);
+
+});
+
+
+const navToggle =
+document.getElementById('nav-toggle');
+
+
+const navMenu =
+document.getElementById('nav-menu');
+
+
+navToggle
+?.addEventListener('click', () => {
+
+  navMenu
+  ?.classList
+  .toggle('active');
+
+  navToggle
+  ?.classList
+  .toggle('active');
+
+});
+
+
+document
+.querySelectorAll('.nav-menu a')
+.forEach(link => {
+
+  link.addEventListener(
+    'click',
+    () => {
+
+      navMenu
+      ?.classList
+      .remove('active');
+
+      navToggle
+      ?.classList
+      .remove('active');
+
     }
+  );
 
-    translate(currentLang);
+});
 
-    document.getElementById('lang-toggle')?.addEventListener('click', () => {
-      currentLang = currentLang === 'es' ? 'en' : 'es';
-      translate(currentLang);
-    });
 
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu   = document.getElementById('nav-menu');
+document
+.addEventListener('click', e => {
 
-    navToggle?.addEventListener('click', () => {
-      navMenu?.classList.toggle('active');
-      navToggle?.classList.toggle('active');
-    });
+  if (
+    navMenu &&
+    navToggle &&
+    !navMenu.contains(e.target) &&
+    !navToggle.contains(e.target)
+  ) {
 
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu?.classList.remove('active');
-        navToggle?.classList.remove('active');
-      });
-    });
+    navMenu
+    ?.classList
+    .remove('active');
 
-    document.addEventListener('click', e => {
-      if (navMenu && navToggle && !navMenu.contains(e.target) && !navToggle.contains(e.target)) {
-        navMenu?.classList.remove('active');
-        navToggle?.classList.remove('active');
-      }
-    });
-  </script>
+    navToggle
+    ?.classList
+    .remove('active');
+
+  }
+
+});
+
+</script>
+
 </body>
 </html>
